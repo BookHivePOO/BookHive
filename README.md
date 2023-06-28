@@ -28,10 +28,6 @@ Os usuários podem pesquisar livros disponíveis para compra com base em critér
 
 Os usuários podem visualizar os detalhes completos de um livro, incluindo informações sobre o vendedor, descrição do livro e preço.
 
-### Carrinho de Compras
-
-O usuário pode adicionar vários livros ao carrinho de compras enquanto navega pelo sistema. O carrinho de compras armazena os livros selecionados para posterior finalização da compra.
-
 ### Compra de Livros
 
 Os usuários podem selecionar um livro disponível e efetuar a compra, informando o método de pagamento e as informações de entrega.
