@@ -9,10 +9,20 @@ public class Genero {
         this.genero = genero;
     }
 
+    /**
+     * Retorna o ID do gênero.
+     *
+     * @return ID do gênero
+     */
     public int getIdGenero() {
         return idGenero;
     }
 
+    /**
+     * Retorna a descrição do gênero.
+     *
+     * @return descrição do gênero
+     */
     public String getDescricao() {
         return genero;
     }

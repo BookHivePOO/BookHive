@@ -15,22 +15,47 @@ public class Usuario {
         this.idEndereco = idEndereco;
     }
 
-    public String getNome(){
+    /**
+     * Retorna o nome do usuário.
+     *
+     * @return nome do usuário
+     */
+    public String getNome() {
         return nome;
     }
 
-    public long getCpf(){
+    /**
+     * Retorna o CPF do usuário.
+     *
+     * @return CPF do usuário
+     */
+    public long getCpf() {
         return cpf;
     }
 
+    /**
+     * Retorna o ID da credencial do usuário.
+     *
+     * @return ID da credencial do usuário
+     */
     public Long getIdCredencial() {
         return idCredencial;
     }
 
+    /**
+     * Retorna o ID do endereço do usuário.
+     *
+     * @return ID do endereço do usuário
+     */
     public Long getIdEndereco() {
         return idEndereco;
     }
 
+    /**
+     * Retorna o ID do usuário.
+     *
+     * @return ID do usuário
+     */
     public long getId() {
         return id;
     }

@@ -1,10 +1,19 @@
 package application;
 
-import dao.UsuarioDAO;
+import dao.EnderecoDAO;
 import dao.LivroDAO;
+import dao.PagamentoDAO;
+import dao.TransacaoDAO;
+import dao.UsuarioDAO;
+import dto.LivroDTO;
+import dto.TransacaoDTO;
+import model.Pagamento;
+import model.Transacao;
 import model.Usuario;
-import model.Livro;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -13,6 +22,7 @@ public class Main {
         // Criação do objeto UsuarioDAO e LivroDAO
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         LivroDAO livroDAO = new LivroDAO();
+        TransacaoDAO transacaoDAO = new TransacaoDAO();
 
         // Criação do objeto Scanner para leitura de entrada do usuário
         Scanner scanner = new Scanner(System.in);
@@ -24,13 +34,17 @@ public class Main {
             System.out.println("Escolha uma opção:");
             System.out.println("1 - Login");
             System.out.println("2 - Cadastrar");
-            System.out.println("0 - Fechar");
 
             if (usuarioLogado != null) {
                 System.out.println("3 - Cadastrar Livro");
                 System.out.println("4 - Pesquisar Livro por Nome");
                 System.out.println("5 - Listar Livros por Gênero");
+                System.out.println("6 - Listar todos os livros");
+                System.out.println("7 - Comprar livro");
+                System.out.println("8 - Ver histórico de vendas");
+                System.out.println("9 - Ver histórico de compras");
             }
+            System.out.println("0 - Fechar");
 
             opcao = scanner.nextInt();
             scanner.nextLine(); // Limpar o buffer de leitura
@@ -119,13 +133,13 @@ public class Main {
                         String nomeLivro = scanner.nextLine();
 
                         // Pesquisar livros por nome
-                        List<Livro> livrosPorNome = livroDAO.pesquisarLivrosPorNome(nomeLivro);
+                        List<LivroDTO> livrosPorNome = livroDAO.pesquisarLivrosPorNome(nomeLivro);
 
                         if (livrosPorNome.isEmpty()) {
                             System.out.println("Nenhum livro encontrado com esse nome.");
                         } else {
                             System.out.println("Livros encontrados:");
-                            for (Livro livro : livrosPorNome) {
+                            for (LivroDTO livro : livrosPorNome) {
                                 System.out.println(" ");
                                 System.out.println("---------------------------------------------------");
                                 livro.imprimirLivro();
@@ -144,20 +158,182 @@ public class Main {
                         String genero = scanner.nextLine();
 
                         // Listar livros por gênero
-                        List<Livro> livrosPorGenero = livroDAO.listarLivrosPorGenero(genero);
+                        List<LivroDTO> livrosPorGenero = livroDAO.listarLivrosPorGenero(genero);
 
                         if (livrosPorGenero.isEmpty()) {
                             System.out.println("Nenhum livro encontrado nesse gênero.");
                         } else {
                             System.out.println("Livros encontrados:");
-                            for (Livro livro : livrosPorGenero) {
-                                System.out.println(livro);
+                            for (LivroDTO livro : livrosPorGenero) {
+                                System.out.println(" ");
+                                System.out.println("---------------------------------------------------");
+                                livro.imprimirLivro();
                             }
+                            System.out.println("---------------------------------------------------");
                         }
                     } else {
                         System.out.println("É necessário fazer login para listar os livros por gênero.");
                     }
 
+                    break;
+                case 6:
+                    if (usuarioLogado != null) {
+
+                        // Listar livros por gênero
+                        List<LivroDTO> todosLivros = livroDAO.listarTodosLivros();
+
+                        if (todosLivros.isEmpty()) {
+                            System.out.println("Nenhum livro encontrado.");
+                        } else {
+                            System.out.println("Livros encontrados:");
+                            for (LivroDTO livro : todosLivros) {
+                                System.out.println(" ");
+                                System.out.println("---------------------------------------------------");
+                                livro.imprimirLivro();
+                            }
+                            System.out.println("---------------------------------------------------");
+                        }
+                    } else {
+                        System.out.println("É necessário fazer login para listar os livros por gênero.");
+                    }
+                    break;
+                case 7:
+                    if (usuarioLogado != null) {
+                        // Solicitar o ID do livro a ser comprado
+                        System.out.println("Digite o ID do livro que deseja comprar:");
+                        int idLivroCompra = scanner.nextInt();
+                        scanner.nextLine(); // Limpar o buffer de leitura
+
+                        // Verificar se o livro existe
+                        LivroDTO livroCompra = livroDAO.pesquisarLivroPorId(idLivroCompra);
+                        if (livroCompra != null) {
+                            // Exibir informações do livro
+                            System.out.println("Livro selecionado:");
+                            System.out.println("ID: " + livroCompra.getId());
+                            System.out.println("Título: " + livroCompra.getTitulo());
+                            System.out.println("Autor: " + livroCompra.getAutor());
+
+                            // Solicitar informações de pagamento
+                            System.out.println("Digite o nome do cartão:");
+                            String nomeCartao = scanner.nextLine();
+
+                            System.out.println("Digite o número do cartão:");
+                            String numeroCartao = scanner.nextLine();
+
+                            System.out.println("Digite a bandeira do cartão:");
+                            String bandeira = scanner.nextLine();
+
+                            System.out.println("Digite a data de validade do cartão (formato: yyyy-MM-dd):");
+                            String dataValidadeStr = scanner.nextLine();
+                            Date dataValidade = null;
+                            try {
+                                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                                dataValidade = dateFormat.parse(dataValidadeStr);
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
+                            System.out.println("Digite o código de segurança do cartão:");
+                            long codigoSeguranca = scanner.nextLong();
+                            scanner.nextLine(); // Limpar o buffer de leitura
+
+                            System.out.println("Digite o logradouro de entrega:");
+                            String logradouroEntrega = scanner.nextLine();
+
+                            System.out.println("Digite o número de entrega:");
+                            int numeroEntrega = scanner.nextInt();
+                            scanner.nextLine(); // Limpar o buffer de leitura
+
+                            System.out.println("Digite o complemento de entrega:");
+                            String complementoEntrega = scanner.nextLine();
+
+                            System.out.println("Digite o bairro de entrega:");
+                            String bairroEntrega = scanner.nextLine();
+
+                            System.out.println("Digite a cidade de entrega:");
+                            String cidadeEntrega = scanner.nextLine();
+
+                            System.out.println("Digite o estado de entrega:");
+                            String estadoEntrega = scanner.nextLine();
+
+                            System.out.println("Digite o CEP de entrega:");
+                            long cepEntrega = scanner.nextLong();
+                            scanner.nextLine(); // Limpar o buffer de leitura
+
+                            // Cadastro do endereço de entrega
+                            int idEnderecoEntrega = new EnderecoDAO().cadastrarEndereco(logradouroEntrega, numeroEntrega, complementoEntrega, bairroEntrega, cidadeEntrega, estadoEntrega, cepEntrega, (int) usuarioLogado.getId());
+
+
+                            // Criação do objeto Pagamento com os dados informados pelo usuário
+                            PagamentoDAO pagamentoDAO = new PagamentoDAO();
+                            Pagamento pagamento = pagamentoDAO.cadastrarPagamento(nomeCartao, numeroCartao, bandeira, dataValidade, codigoSeguranca);
+
+                            // Realizar a transação de compra
+                            boolean transacaoEfetuada = transacaoDAO.efetuarCompra(idLivroCompra, idEnderecoEntrega, (int) usuarioLogado.getId(), pagamento.getIdPagamento());
+
+                            if (transacaoEfetuada) {
+                                System.out.println("Compra realizada com sucesso!");
+                            } else {
+                                System.out.println("Falha ao efetuar a compra.");
+                            }
+                        } else {
+                            System.out.println("Livro não encontrado com o ID informado.");
+                        }
+                    } else {
+                        System.out.println("É necessário fazer login para comprar um livro.");
+                    }
+                    break;
+                case 8:
+                    if (usuarioLogado != null) {
+                        // Verificar se o usuário é um vendedor
+                        // Obter o ID do vendedor logado
+                        int idVendedor = (int) usuarioLogado.getId();
+
+                        // Obter o histórico de vendas do vendedor
+                        List<TransacaoDTO> historicoVendas = transacaoDAO.pesquisarVendasPorIdUsuario(idVendedor);
+
+                        if (historicoVendas.isEmpty()) {
+                            System.out.println("Nenhuma venda realizada.");
+                        } else {
+                            System.out.println("Histórico de vendas:");
+                            for (TransacaoDTO venda : historicoVendas) {
+                                System.out.println(" ");
+                                System.out.println("---------------------------------------------------");
+                                venda.imprimirTransacao();
+                            }
+                            System.out.println("---------------------------------------------------");
+                        }
+                    } else {
+                        System.out.println("É necessário fazer login para ver o histórico de vendas.");
+                    }
+                    break;
+                case 9:
+                    if (usuarioLogado != null) {
+                        // Verificar se o usuário é um vendedor
+                        if (usuarioLogado != null) {
+                            // Obter o ID do vendedor logado
+                            int idVendedor = (int) usuarioLogado.getId();
+
+                            // Obter o histórico de compras do vendedor
+                            List<TransacaoDTO> historicoCompras = transacaoDAO.pesquisarComprasPorIdUsuario(idVendedor);
+
+                            if (historicoCompras.isEmpty()) {
+                                System.out.println("Nenhuma compra realizada.");
+                            } else {
+                                System.out.println("Histórico de compras:");
+                                for (TransacaoDTO compra : historicoCompras) {
+                                    System.out.println(" ");
+                                    System.out.println("---------------------------------------------------");
+                                    compra.imprimirTransacao();
+                                }
+                                System.out.println("---------------------------------------------------");
+                            }
+                        } else {
+                            System.out.println("Apenas vendedores têm histórico de compras.");
+                        }
+                    } else {
+                        System.out.println("É necessário fazer login para ver o histórico de compras.");
+                    }
                     break;
                 case 0:
                     System.out.println("Fechando o programa...");

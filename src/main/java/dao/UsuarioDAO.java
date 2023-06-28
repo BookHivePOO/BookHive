@@ -1,4 +1,5 @@
 package dao;
+
 import conection.SQLConnection;
 import interfaces.IUsuarioDAO;
 import model.Credencial;
@@ -69,7 +70,7 @@ public class UsuarioDAO implements IUsuarioDAO {
     @Override
     public boolean verificarEmailExistente(String email) {
         try {
-            String sql = QuerySQL.COUNT_USUARIO_POR_EMAIL;
+            String sql = QuerySQL.VERIFICA_EMAIL;
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
@@ -100,7 +101,6 @@ public class UsuarioDAO implements IUsuarioDAO {
             if (resultSet.next()) {
                 int idCredencial = resultSet.getInt("idCredencial");
 
-                // Buscar os dados do usuário com base no ID da credencial
                 String sqlUsuario = "SELECT * FROM Usuario WHERE idCredencial = ?";
                 PreparedStatement statementUsuario = connection.prepareStatement(sqlUsuario);
                 statementUsuario.setInt(1, idCredencial);
@@ -126,9 +126,20 @@ public class UsuarioDAO implements IUsuarioDAO {
             e.printStackTrace();
         }
 
-        return null; // Retorna null se o login falhar
+        return null;
     }
 
-
-
+    @Override
+    public void atualizarIdEndereco(int idUsuario, int idEndereco) {
+        try {
+            String sql = QuerySQL.ATUALIZAR_ENDERECO_USUARIO;
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, idEndereco);
+            statement.setInt(2, idUsuario);
+            statement.executeUpdate();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
