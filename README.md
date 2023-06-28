@@ -1,6 +1,10 @@
-# Sistema de Venda de Livros Novos e Usados - BookHive
+# Sistema de Compra e Venda de Livros Novos e Usados - BookHive
 
 Este é um projeto de criação de um sistema de controle e gerenciamento de vendas de livros novos e usados. O sistema consiste em uma plataforma online que permite aos usuários cadastrar livros para venda e buscar por livros disponíveis para compra. A ideia é facilitar a transação de livros usados entre vendedores e compradores.
+
+## UML
+![WhatsApp Image 2023-06-23 at 10 32 51](https://github.com/BookHivePOO/BookHive/assets/106194018/5f4fee75-09c8-4492-aa47-90c780721389)
+
 
 ## Equipe
 
