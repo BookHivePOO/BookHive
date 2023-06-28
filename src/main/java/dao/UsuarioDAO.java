@@ -37,21 +37,23 @@ public class UsuarioDAO implements IUsuarioDAO {
 
         Credencial credencial = credencialDAO.criarNovaCredencial(email, senha);
 
-        Usuario usuario = new Usuario(nome, cpf, credencial, null);
+        int novoId = (int) (Math.random() * 1000);
+        Usuario usuario = new Usuario(novoId, nome, cpf, credencial.getIdCredencial(), null);
 
         try {
             String sql;
-            if (usuario.getEndereco() != null) {
+            if (usuario.getIdEndereco() != null) {
                 sql = QuerySQL.INSERIR_USUARIO_COM_ENDERECO;
             } else {
                 sql = QuerySQL.INSERIR_USUARIO;
             }
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, usuario.getNome());
-            statement.setLong(2, usuario.getCpf());
-            statement.setInt(3, credencial.getIdCredencial());
-            if (usuario.getEndereco() != null) {
-                statement.setInt(4, usuario.getEndereco().getIdEndereco());
+            statement.setLong(1, usuario.getId());
+            statement.setString(2, usuario.getNome());
+            statement.setLong(3, usuario.getCpf());
+            statement.setLong(4, credencial.getIdCredencial());
+            if (usuario.getIdEndereco() != null) {
+                statement.setLong(5, usuario.getIdEndereco());
             }
             statement.executeUpdate();
             statement.close();
@@ -87,20 +89,34 @@ public class UsuarioDAO implements IUsuarioDAO {
     }
 
     @Override
-    public boolean realizarLogin(String email, String senha) {
+    public Usuario realizarLogin(String email, String senha) {
         try {
-            String sql = QuerySQL.COUNT_USUARIO_POR_EMAIL_SENHA;
+            String sql = QuerySQL.SELECT_USUARIO_POR_EMAIL_SENHA;
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, email);
             statement.setString(2, senha);
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                int count = resultSet.getInt(1);
-                if (count > 0) {
-                    System.out.println(MENSAGEM_SUCESSO_LOGIN);
-                    return true;
+                int idCredencial = resultSet.getInt("idCredencial");
+
+                // Buscar os dados do usuário com base no ID da credencial
+                String sqlUsuario = "SELECT * FROM Usuario WHERE idCredencial = ?";
+                PreparedStatement statementUsuario = connection.prepareStatement(sqlUsuario);
+                statementUsuario.setInt(1, idCredencial);
+                ResultSet resultSetUsuario = statementUsuario.executeQuery();
+
+                if (resultSetUsuario.next()) {
+                    int idUsuario = resultSetUsuario.getInt("idUsuario");
+                    String nome = resultSetUsuario.getString("nome");
+                    long cpf = resultSetUsuario.getLong("cpf");
+                    long idEndereco = resultSetUsuario.getLong("idEndereco");
+
+                    return new Usuario(idUsuario, nome, cpf, (long) idCredencial, idEndereco);
                 }
+
+                resultSetUsuario.close();
+                statementUsuario.close();
             }
 
             System.out.println(CREDENCIAIS_INVALIDAS_ERROR_MENSAGEM);
@@ -110,6 +126,9 @@ public class UsuarioDAO implements IUsuarioDAO {
             e.printStackTrace();
         }
 
-        return false;
+        return null; // Retorna null se o login falhar
     }
+
+
+
 }

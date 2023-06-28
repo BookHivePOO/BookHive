@@ -1,16 +1,18 @@
 package model;
 
 public class Usuario {
+    private final int id;
     private final String nome;
     private final long cpf;
-    private final Credencial credencial;
-    private final Endereco endereco;
+    private final Long idCredencial;
+    private final Long idEndereco;
 
-    public Usuario(String nome, long cpf, Credencial credencial, Endereco endereco) {
+    public Usuario(int id, String nome, long cpf, Long idCredencial, Long idEndereco) {
+        this.id = id;
         this.nome = nome;
         this.cpf = cpf;
-        this.credencial = credencial;
-        this.endereco = endereco;
+        this.idCredencial = idCredencial;
+        this.idEndereco = idEndereco;
     }
 
     public String getNome(){
@@ -21,11 +23,15 @@ public class Usuario {
         return cpf;
     }
 
-    public Credencial getCredencial(){
-        return credencial;
+    public Long getIdCredencial() {
+        return idCredencial;
     }
 
-    public Endereco getEndereco(){
-        return endereco;
+    public Long getIdEndereco() {
+        return idEndereco;
+    }
+
+    public long getId() {
+        return id;
     }
 }

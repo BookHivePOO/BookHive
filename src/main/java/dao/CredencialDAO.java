@@ -27,7 +27,7 @@ public class CredencialDAO {
         try {
             String sql = QuerySQL.INSERIR_CREDENCIAL;
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, credencial.getIdCredencial());
+            statement.setLong(1, credencial.getIdCredencial());
             statement.setString(2, email);
             statement.setString(3, senha);
             statement.setBoolean(4, true);

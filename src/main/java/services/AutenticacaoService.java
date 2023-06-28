@@ -1,6 +1,7 @@
 package services;
 
 import interfaces.IUsuarioDAO;
+import model.Usuario;
 
 public class AutenticacaoService {
     private final IUsuarioDAO usuarioDAO;
@@ -9,7 +10,7 @@ public class AutenticacaoService {
         this.usuarioDAO = usuarioDAO;
     }
 
-    public boolean realizarLogin(String email, String senha) {
+    public Usuario realizarLogin(String email, String senha) {
         return usuarioDAO.realizarLogin(email, senha);
     }
 }
