@@ -13,12 +13,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe de acesso a dados para manipulação de transações.
+ */
 public class TransacaoDAO implements ITransacaoDAO {
     private static final String MENSAGEM_SUCESSO_COMPRA = "Compra efetuada com sucesso!";
     private static final String FALHA_COMPRA = "Falha ao efetuar a compra.";
 
     private Connection connection;
 
+    /**
+     * Construtor da classe TransacaoDAO.
+     */
     public TransacaoDAO() {
         try {
             connection = SQLConnection.getConnection();
@@ -48,10 +54,11 @@ public class TransacaoDAO implements ITransacaoDAO {
             String sql = QuerySQL.INSERIR_TRANSACAO;
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, idUsuario);
-            statement.setInt(2, idLivro);
-            statement.setInt(3, idPagamento);
-            statement.setInt(4, idEndereco);
-            statement.setDouble(5, valorTotal);
+            statement.setInt(2, Math.toIntExact(livro.getIdUsuarioVenda()));
+            statement.setInt(3, idLivro);
+            statement.setInt(4, idPagamento);
+            statement.setInt(5, idEndereco);
+            statement.setDouble(6, valorTotal);
             statement.executeUpdate();
             statement.close();
 

@@ -37,17 +37,17 @@ public class QuerySQL {
     /**
      * Query para selecionar todos os livros.
      */
-    public static final String SELECIONAR_TODOS_LIVROS = "SELECT * FROM Livro";
+    public static final String SELECIONAR_TODOS_LIVROS = "SELECT * FROM Livro WHERE disponivel = 1";
 
     /**
      * Query para selecionar livros por nome.
      */
-    public static final String SELECIONAR_LIVROS_POR_NOME = "SELECT * FROM Livro WHERE titulo LIKE ?";
+    public static final String SELECIONAR_LIVROS_POR_NOME = "SELECT * FROM Livro WHERE titulo LIKE ? AND disponivel = 1";
 
     /**
      * Query para selecionar livros por gênero.
      */
-    public static final String SELECIONAR_LIVROS_POR_GENERO = "SELECT * FROM Livro WHERE idGenero = ?";
+    public static final String SELECIONAR_LIVROS_POR_GENERO = "SELECT * FROM Livro WHERE idGenero = ? AND disponivel = 1";
 
     /**
      * Query para selecionar o ID de um gênero por descrição.
@@ -112,5 +112,5 @@ public class QuerySQL {
     /**
      * Query para remover um livro.
      */
-    public static final String DELETE_LIVRO_COMPRADO = "DELETE FROM Livro WHERE idLivro = ?";
+    public static final String ATUALIZAR_LIVRO_COMPRADO = "UPDATE Livro SET disponivel = ? WHERE idLivro = ?";
 }

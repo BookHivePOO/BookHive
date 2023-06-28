@@ -258,9 +258,10 @@ public class LivroDAO implements ILivroDAO {
     @Override
     public void removerLivro(int idLivro) {
         try {
-            String sql = QuerySQL.DELETE_LIVRO_COMPRADO;
+            String sql = QuerySQL.ATUALIZAR_LIVRO_COMPRADO;
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, idLivro);
+            statement.setBoolean(1, false);
+            statement.setInt(2, idLivro);
             statement.executeUpdate();
             statement.close();
         } catch (SQLException e) {

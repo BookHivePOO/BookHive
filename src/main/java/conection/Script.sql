@@ -47,6 +47,7 @@ CREATE TABLE Livro (
   preco DOUBLE,
   foto VARCHAR(255),
   idUsuarioVenda INT,
+  disponivel BOOLEAN DEFAULT TRUE,
   FOREIGN KEY (idGenero) REFERENCES Genero(idGenero),
   FOREIGN KEY (idUsuarioVenda) REFERENCES Usuario(idUsuario)
 );
