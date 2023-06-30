@@ -18,6 +18,8 @@ public class QuerySQL {
      */
     public static final String INSERIR_USUARIO_COM_ENDERECO = "INSERT INTO Usuario (idUsuario, nome, cpf, idCredencial, idEndereco) VALUES (?, ?, ?, ?, ?)";
 
+    public static final String BUSCAR_USUARIO_POR_ID = "SELECT * FROM Usuario WHERE idCredencial = ?";
+
     /**
      * Query para verificar a existência de um e-mail.
      */
@@ -26,7 +28,7 @@ public class QuerySQL {
     /**
      * Query para selecionar um usuário por e-mail e senha.
      */
-    public static final String SELECT_USUARIO_POR_EMAIL_SENHA = "SELECT * FROM Credencial WHERE email = ? AND senha = ?";
+    public static final String SELECT_USUARIO_POR_EMAIL = "SELECT * FROM Credencial WHERE email = ?";
 
     /**
      * Query para inserir uma nova credencial.

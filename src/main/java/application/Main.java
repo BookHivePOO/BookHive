@@ -1,5 +1,6 @@
 package application;
 
+import dao.CredencialDAO;
 import dao.EnderecoDAO;
 import dao.LivroDAO;
 import dao.PagamentoDAO;
@@ -22,6 +23,7 @@ public class Main {
     public static void main(String[] args) {
         // Criação do objeto UsuarioDAO e LivroDAO
         UsuarioDAO usuarioDAO = new UsuarioDAO();
+        CredencialDAO credencialDAO = new CredencialDAO();
         LivroDAO livroDAO = new LivroDAO();
         TransacaoDAO transacaoDAO = new TransacaoDAO();
 
@@ -62,7 +64,7 @@ public class Main {
                     String senha = scanner.nextLine();
 
                     // Realizar o login
-                    Usuario loginSucesso = usuarioDAO.realizarLogin(email, senha);
+                    Usuario loginSucesso = credencialDAO.realizarLogin(email, senha);
                     if (loginSucesso != null) {
                         usuarioLogado = loginSucesso;
                         System.out.println("Login realizado com sucesso!");

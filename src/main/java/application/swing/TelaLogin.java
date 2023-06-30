@@ -1,5 +1,6 @@
 package application.swing;
 
+import dao.CredencialDAO;
 import dao.UsuarioDAO;
 import model.Usuario;
 
@@ -70,8 +71,8 @@ public class TelaLogin extends JFrame {
         String email = campoEmail.getText();
         String senha = new String(campoSenha.getPassword());
 
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        Usuario usuario = usuarioDAO.realizarLogin(email, senha);
+        CredencialDAO credencialDAO = new CredencialDAO();
+        Usuario usuario = credencialDAO.realizarLogin(email, senha);
 
         if (usuario != null) {
             // Login bem-sucedido

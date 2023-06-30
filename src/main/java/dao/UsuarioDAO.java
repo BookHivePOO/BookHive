@@ -4,14 +4,19 @@ import conection.SQLConnection;
 import interfaces.IUsuarioDAO;
 import model.Credencial;
 import model.Usuario;
+import org.bouncycastle.crypto.generators.BCrypt;
+import org.jasypt.util.password.StrongPasswordEncryptor;
 import util.QuerySQL;
 
+import javax.xml.transform.Result;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import org.mindrot.jbcrypt.BCrypt.*;
+import util.Validacoes;
 
 public class UsuarioDAO implements IUsuarioDAO {
     private static final String EMAIL_CADASTRADO_ERROR_MENSAGEM = "E-mail já cadastrado. Por favor, tente outro e-mail.";
@@ -33,7 +38,13 @@ public class UsuarioDAO implements IUsuarioDAO {
 
     @Override
     public boolean cadastrarUsuario(String nome, long cpf, String email, String senha) {
-        if (verificarEmailExistente(email)) {
+
+        if(Validacoes.validarCadastroUsuario(nome,cpf,email,senha)){
+            return false;
+        }
+
+        CredencialDAO credencialDAO = new CredencialDAO();
+        if (credencialDAO.verificarEmailExistente(email)) {
             System.out.println(EMAIL_CADASTRADO_ERROR_MENSAGEM);
             return false;
         }
@@ -67,68 +78,6 @@ public class UsuarioDAO implements IUsuarioDAO {
             e.printStackTrace();
             return false;
         }
-    }
-
-    @Override
-    public boolean verificarEmailExistente(String email) {
-        try {
-            String sql = QuerySQL.VERIFICA_EMAIL;
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, email);
-            ResultSet resultSet = statement.executeQuery();
-
-            if (resultSet.next()) {
-                int count = resultSet.getInt(1);
-                return count > 0;
-            }
-
-            resultSet.close();
-            statement.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return false;
-    }
-
-    @Override
-    public Usuario realizarLogin(String email, String senha) {
-        try {
-            String sql = QuerySQL.SELECT_USUARIO_POR_EMAIL_SENHA;
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, email);
-            statement.setString(2, senha);
-            ResultSet resultSet = statement.executeQuery();
-
-            if (resultSet.next()) {
-                int idCredencial = resultSet.getInt("idCredencial");
-
-                String sqlUsuario = "SELECT * FROM Usuario WHERE idCredencial = ?";
-                PreparedStatement statementUsuario = connection.prepareStatement(sqlUsuario);
-                statementUsuario.setInt(1, idCredencial);
-                ResultSet resultSetUsuario = statementUsuario.executeQuery();
-
-                if (resultSetUsuario.next()) {
-                    int idUsuario = resultSetUsuario.getInt("idUsuario");
-                    String nome = resultSetUsuario.getString("nome");
-                    long cpf = resultSetUsuario.getLong("cpf");
-                    long idEndereco = resultSetUsuario.getLong("idEndereco");
-
-                    return new Usuario(idUsuario, nome, cpf, (long) idCredencial, idEndereco);
-                }
-
-                resultSetUsuario.close();
-                statementUsuario.close();
-            }
-
-            System.out.println(CREDENCIAIS_INVALIDAS_ERROR_MENSAGEM);
-            resultSet.close();
-            statement.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return null;
     }
 
     @Override
