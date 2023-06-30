@@ -1,20 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-75c5e90a9a492aeed862f977fd7c7e7c792d7f63  -->
-<!-- 2023-06-29T15:38:08 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="livro" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="efdb4c0f-7ce0-4390-9a76-c96c0d15ff95">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="livro" pageWidth="595" pageHeight="842" columnWidth="59" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="efdb4c0f-7ce0-4390-9a76-c96c0d15ff95">
     <property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
     <queryString>
         <![CDATA[]]>
     </queryString>
-    <field name="idLivro" class="java.lang.Integer"/>
+    <field name="id" class="java.lang.Integer"/>
     <field name="titulo" class="java.lang.String"/>
     <field name="autor" class="java.lang.String"/>
-    <field name="anoPublicacao" class="java.lang.Integer"/>
+    <field name="descricao" class="java.lang.String"/>
+    <field name="numeroPaginas" class="java.lang.Integer"/>
     <field name="genero" class="java.lang.String"/>
+    <field name="preco" class="java.lang.Double"/>
+    <field name="foto" class="java.lang.String"/>
+    <field name="idUsuarioVenda" class="java.lang.Long"/>
+    <field name="estado" class="java.lang.String"/>
     <title>
         <band height="79" splitType="Stretch">
             <staticText>
-                <reportElement x="0" y="0" width="555" height="39" uuid="8155461c-c409-4ff5-bfda-6d2e3a19b595"/>
+                <reportElement x="0" y="0" width="595" height="39" uuid="8155461c-c409-4ff5-bfda-6d2e3a19b595"/>
                 <textElement textAlignment="Center">
                     <font size="18"/>
                 </textElement>
@@ -25,60 +27,98 @@
     <columnHeader>
         <band height="30" splitType="Stretch">
             <staticText>
-                <reportElement x="0" y="0" width="120" height="30" uuid="16aa11e9-2e9a-4b78-b2fd-0db523822eb7"/>
+                <reportElement x="0" y="0" width="59" height="30" uuid="16aa11e9-2e9a-4b78-b2fd-0db523822eb7"/>
                 <text><![CDATA[Id]]></text>
             </staticText>
             <staticText>
-                <reportElement x="120" y="0" width="120" height="30" uuid="5a13382d-d6a2-4bde-8258-9b14cde6f7fb"/>
+                <reportElement x="59" y="0" width="59" height="30" uuid="5a13382d-d6a2-4bde-8258-9b14cde6f7fb"/>
                 <text><![CDATA[Título]]></text>
             </staticText>
             <staticText>
-                <reportElement x="240" y="0" width="120" height="30" uuid="bb1d537a-3bb8-4a01-9674-485eb9773e82"/>
+                <reportElement x="118" y="0" width="59" height="30" uuid="bb1d537a-3bb8-4a01-9674-485eb9773e82"/>
                 <text><![CDATA[Autor]]></text>
             </staticText>
             <staticText>
-                <reportElement x="360" y="0" width="120" height="30" uuid="1762e38b-bb5f-41aa-86a7-4ef6eae332c2"/>
-                <text><![CDATA[Ano Publicação]]></text>
+                <reportElement x="177" y="0" width="59" height="30" uuid="1762e38b-bb5f-41aa-86a7-4ef6eae332c2"/>
+                <text><![CDATA[Descrição]]></text>
             </staticText>
             <staticText>
-                <reportElement x="480" y="0" width="120" height="30" uuid="2d8b733e-7f7e-4dd3-a927-dde7f6687f0a"/>
+                <reportElement x="236" y="0" width="59" height="30" uuid="2d8b733e-7f7e-4dd3-a927-dde7f6687f0a"/>
+                <text><![CDATA[Número de Páginas]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="295" y="0" width="59" height="30" uuid="2d8b733e-7f7e-4dd3-a927-dde7f6687f0a"/>
                 <text><![CDATA[Gênero]]></text>
             </staticText>
             <staticText>
-                <reportElement x="0" y="0" width="555" height="30" uuid="092221d2-8b5d-4e58-9d45-9e8ab5e2a18c"/>
+                <reportElement x="354" y="0" width="59" height="30" uuid="2d8b733e-7f7e-4dd3-a927-dde7f6687f0a"/>
+                <text><![CDATA[Preço]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="413" y="0" width="59" height="30" uuid="2d8b733e-7f7e-4dd3-a927-dde7f6687f0a"/>
+                <text><![CDATA[Foto]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="472" y="0" width="59" height="30" uuid="2d8b733e-7f7e-4dd3-a927-dde7f6687f0a"/>
+                <text><![CDATA[ID do Usuário de Venda]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="531" y="0" width="59" height="30" uuid="2d8b733e-7f7e-4dd3-a927-dde7f6687f0a"/>
+                <text><![CDATA[Estado]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="0" y="0" width="595" height="30" uuid="092221d2-8b5d-4e58-9d45-9e8ab5e2a18c"/>
                 <textElement textAlignment="Center" verticalAlignment="Middle">
                     <font isBold="true"/>
                 </textElement>
-                <text><![CDATA[Livros]]></text>
             </staticText>
         </band>
     </columnHeader>
     <detail>
         <band height="40" splitType="Stretch">
             <textField>
-                <reportElement x="0" y="0" width="120" height="30" uuid="8170a3ad-02c7-49d6-8330-c15fa6d4dffe"/>
-                <textFieldExpression><![CDATA[$F{idLivro}]]></textFieldExpression>
+                <reportElement x="0" y="0" width="59" height="30" uuid="8170a3ad-02c7-49d6-8330-c15fa6d4dffe"/>
+                <textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="120" y="0" width="120" height="30" uuid="b35d6df1-b9d4-4096-9c4c-75a5c041cc47"/>
+                <reportElement x="59" y="0" width="59" height="30" uuid="b35d6df1-b9d4-4096-9c4c-75a5c041cc47"/>
                 <textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="240" y="0" width="120" height="30" uuid="2c74f0b4-0a2e-41da-bc1c-1cf3a5f2c3df"/>
+                <reportElement x="118" y="0" width="59" height="30" uuid="2c74f0b4-0a2e-41da-bc1c-1cf3a5f2c3df"/>
                 <textFieldExpression><![CDATA[$F{autor}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="360" y="0" width="120" height="30" uuid="b0d35f7f-6b61-4875-889d-b7e43178ff27"/>
-                <textFieldExpression><![CDATA[$F{anoPublicacao}]]></textFieldExpression>
+                <reportElement x="177" y="0" width="59" height="30" uuid="b0d35f7f-6b61-4875-889d-b7e43178ff27"/>
+                <textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
             </textField>
             <textField>
-                <reportElement x="480" y="0" width="120" height="30" uuid="dbd07a25-b17f-4c4d-97aa-9d0718ab60eb"/>
+                <reportElement x="236" y="0" width="59" height="30" uuid="dbd07a25-b17f-4c4d-97aa-9d0718ab60eb"/>
+                <textFieldExpression><![CDATA[$F{numeroPaginas}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="295" y="0" width="59" height="30" uuid="dbd07a25-b17f-4c4d-97aa-9d0718ab60eb"/>
                 <textFieldExpression><![CDATA[$F{genero}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="354" y="0" width="59" height="30" uuid="dbd07a25-b17f-4c4d-97aa-9d0718ab60eb"/>
+                <textFieldExpression><![CDATA[$F{preco}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="413" y="0" width="59" height="30" uuid="dbd07a25-b17f-4c4d-97aa-9d0718ab60eb"/>
+                <textFieldExpression><![CDATA[$F{foto}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="472" y="0" width="59" height="30" uuid="dbd07a25-b17f-4c4d-97aa-9d0718ab60eb"/>
+                <textFieldExpression><![CDATA[$F{idUsuarioVenda}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="531" y="0" width="59" height="30" uuid="dbd07a25-b17f-4c4d-97aa-9d0718ab60eb"/>
+                <textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
             </textField>
         </band>
         <band height="10">
             <!-- Espaçamento vertical de 10 pixels -->
         </band>
     </detail>
-
 </jasperReport>

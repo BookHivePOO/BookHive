@@ -89,7 +89,7 @@ public class LivroDTO {
      *
      * @return Gênero do livro
      */
-    public String getIdGenero() {
+    public String getGenero() {
         return genero;
     }
 
