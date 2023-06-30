@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.0.final using JasperReports Library version 6.18.0-1c405e2  -->
+<!-- 2022-07-06T10:43:38 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="transacao" language="groovy" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="40" bottomMargin="40" uuid="3c70e335-71e4-4e18-9c75-6a6e7a057b9b">
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+    <style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+    <style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+    <style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+    <style name="Detail" fontName="Arial" fontSize="12"/>
+    <style name="Row" mode="Transparent">
+        <conditionalStyle>
+            <conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+            <style backcolor="#E6DAC3"/>
+        </conditionalStyle>
+    </style>
+    <subDataset name="Dataset1" uuid="ab5c42f4-934f-4c82-9061-2a5563b1fddb">
+        <field name="idTransacao" class="java.lang.Integer"/>
+        <field name="idCompra" class="java.lang.Integer"/>
+        <field name="idVenda" class="java.lang.Integer"/>
+        <field name="idPagamento" class="java.lang.Integer"/>
+        <field name="idEnderecoEntrega" class="java.lang.Integer"/>
+        <field name="totalPagar" class="java.lang.Double"/>
+    </subDataset>
+    <parameter name="idTransacao" class="java.lang.Integer"/>
+    <parameter name="idCompra" class="java.lang.Integer"/>
+    <parameter name="idVenda" class="java.lang.Integer"/>
+    <parameter name="idPagamento" class="java.lang.Integer"/>
+    <parameter name="idEnderecoEntrega" class="java.lang.Integer"/>
+    <parameter name="totalPagar" class="java.lang.Double"/>
+    <queryString>
+        <![CDATA[]]>
+    </queryString>
+    <field name="idTransacao" class="java.lang.Integer">
+        <fieldDescription><![CDATA[idTransacao]]></fieldDescription>
+    </field>
+    <field name="idCompra" class="java.lang.Integer">
+        <fieldDescription><![CDATA[idCompra]]></fieldDescription>
+    </field>
+    <field name="idVenda" class="java.lang.Integer">
+        <fieldDescription><![CDATA[idVenda]]></fieldDescription>
+    </field>
+    <field name="idPagamento" class="java.lang.Integer">
+        <fieldDescription><![CDATA[idPagamento]]></fieldDescription>
+    </field>
+    <field name="idEnderecoEntrega" class="java.lang.Integer">
+        <fieldDescription><![CDATA[idEnderecoEntrega]]></fieldDescription>
+    </field>
+    <field name="totalPagar" class="java.lang.Double">
+        <fieldDescription><![CDATA[totalPagar]]></fieldDescription>
+    </field>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="84" splitType="Stretch">
+            <staticText>
+                <reportElement style="Title" x="0" y="0" width="515" height="50" forecolor="#736343" uuid="f9a13b0e-7b32-4771-8920-36a81dd70c75"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="36" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Transação]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SubTitle" x="0" y="50" width="515" height="30" forecolor="#736343" uuid="08e5c1db-4f8a-47da-9a60-6dd420fdded7"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Arial" size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Detalhes da Transação]]></text>
+            </staticText>
+        </band>
+    </title>
+    <columnHeader>
+        <band height="30" splitType="Stretch">
+            <staticText>
+                <reportElement x="0" y="0" width="100" height="30" uuid="96f0e151-77a9-4d53-8320-8ce0ab7d64d5"/>
+                <text><![CDATA[ID]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="100" y="0" width="100" height="30" uuid="b6c19b0f-7d63-4fa5-9ad3-0481272e1f96"/>
+                <text><![CDATA[Compra]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="200" y="0" width="100" height="30" uuid="e2d1f8b1-31f9-455b-a4c1-5de5ae76c35e"/>
+                <text><![CDATA[Venda]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="300" y="0" width="100" height="30" uuid="f85db09a-6625-4a95-8efb-0efae4a5f7df"/>
+                <text><![CDATA[Pagamento]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="400" y="0" width="100" height="30" uuid="b2b6590e-2e0f-41be-8045-f0f84e8e4139"/>
+                <text><![CDATA[Endereço Entrega]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="500" y="0" width="100" height="30" uuid="2fe7f2f9-0a38-407a-bef7-2959fc679313"/>
+                <text><![CDATA[Total a Pagar]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="20" splitType="Stretch">
+            <textField>
+                <reportElement x="0" y="0" width="100" height="20" uuid="b867be35-0ff4-4a5c-8e07-af9117365043"/>
+                <textElement>
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{idTransacao}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="100" y="0" width="100" height="20" uuid="b2023354-64ae-42df-88a1-607884098935"/>
+                <textElement>
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{idCompra}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="200" y="0" width="100" height="20" uuid="7e6e861e-f75b-4bfb-a63e-58ea80cc932d"/>
+                <textElement>
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{idVenda}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="300" y="0" width="100" height="20" uuid="a39a0011-4d7d-4c72-bab7-bb61fcbe6802"/>
+                <textElement>
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{idPagamento}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="400" y="0" width="100" height="20" uuid="433ce411-9ea5-4f44-9b4a-1ed9b2f1a1b9"/>
+                <textElement>
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{idEnderecoEntrega}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="500" y="0" width="100" height="20" uuid="67dbdfaa-2063-4c17-88e9-1ad82888c40f"/>
+                <textElement>
+                    <font size="12"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{totalPagar}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>

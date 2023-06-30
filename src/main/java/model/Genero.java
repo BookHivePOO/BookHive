@@ -23,7 +23,7 @@ public class Genero {
      *
      * @return descrição do gênero
      */
-    public String getDescricao() {
+    public String getGenero() {
         return genero;
     }
 }

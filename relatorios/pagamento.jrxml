@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.0.final using JasperReports Library version 6.18.0-1c405e2  -->
+<!-- 2022-07-06T10:43:26 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pagamento" language="groovy" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="40" bottomMargin="40" uuid="3c70e335-71e4-4e18-9c75-6a6e7a057b9b">
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+    <style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+    <style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+    <style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+    <style name="Detail" fontName="Arial" fontSize="12"/>
+    <style name="Row" mode="Transparent">
+        <conditionalStyle>
+            <conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+            <style backcolor="#E6DAC3"/>
+        </conditionalStyle>
+    </style>
+    <subDataset name="Dataset1" uuid="ab5c42f4-934f-4c82-9061-2a5563b1fddb">
+        <field name="idPagamento" class="java.lang.Integer"/>
+        <field name="nomeCartao" class="java.lang.String"/>
+        <field name="numeroCartao" class="java.lang.String"/>
+        <field name="bandeira" class="java.lang.String"/>
+        <field name="dataValidade" class="java.util.Date"/>
+        <field name="codigoSeguranca" class="java.lang.Long"/>
+    </subDataset>
+    <parameter name="idPagamento" class="java.lang.Integer"/>
+    <parameter name="nomeCartao" class="java.lang.String"/>
+    <parameter name="numeroCartao" class="java.lang.String"/>
+    <parameter name="bandeira" class="java.lang.String"/>
+    <parameter name="dataValidade" class="java.util.Date"/>
+    <parameter name="codigoSeguranca" class="java.lang.Long"/>
+    <queryString>
+        <![CDATA[]]>
+    </queryString>
+    <field name="idPagamento" class="java.lang.Integer">
+        <fieldDescription><![CDATA[idPagamento]]></fieldDescription>
+    </field>
+    <field name="nomeCartao" class="java.lang.String">
+        <fieldDescription><![CDATA[nomeCartao]]></fieldDescription>
+    </field>
+    <field name="numeroCartao" class="java.lang.String">
+        <fieldDescription><![CDATA[numeroCartao]]></fieldDescription>
+    </field>
+    <field name="bandeira" class="java.lang.String">
+        <fieldDescription><![CDATA[bandeira]]></fieldDescription>
+    </field>
+    <field name="dataValidade" class="java.util.Date">
+        <fieldDescription><![CDATA[dataValidade]]></fieldDescription>
+    </field>
+    <field name="codigoSeguranca" class="java.lang.Long">
+        <fieldDescription><![CDATA[codigoSeguranca]]></fieldDescription>
+    </field>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="84" splitType="Stretch">
+            <staticText>
+                <reportElement style="Title" x="0" y="0" width="515" height="50" forecolor="#736343" uuid="f9a13b0e-7b32-4771-8920-36a81dd70c75"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="36" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Pagamento]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="SubTitle" x="0" y="50" width="515" height="30" forecolor="#736343" uuid="08e5c1db-4f8a-47da-9a60-6dd420fdded7"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Times New Roman" size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Detalhes do Pagamento]]></text>
+            </staticText>
+        </band>
+    </title>
+    <columnHeader>
+        <band height="30" splitType="Stretch">
+            <staticText>
+                <reportElement style="Column header" x="0" y="0" width="80" height="30" forecolor="#000000" uuid="8b23e6a2-12f9-4d5e-86c4-511cf70432d6"/>
+                <text><![CDATA[ID]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" x="80" y="0" width="200" height="30" forecolor="#000000" uuid="1799d19e-2cc1-4a66-9f88-dade9f50091d"/>
+                <text><![CDATA[Nome do Cartão]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" x="280" y="0" width="150" height="30" forecolor="#000000" uuid="7e5f692b-109c-42c7-9f1e-7d125c4ed977"/>
+                <text><![CDATA[Número do Cartão]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" x="430" y="0" width="85" height="30" forecolor="#000000" uuid="7e5f692b-109c-42c7-9f1e-7d125c4ed978"/>
+                <text><![CDATA[Bandeira]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" x="515" y="0" width="100" height="30" forecolor="#000000" uuid="7e5f692b-109c-42c7-9f1e-7d125c4ed979"/>
+                <text><![CDATA[Data de Validade]]></text>
+            </staticText>
+            <staticText>
+                <reportElement style="Column header" x="615" y="0" width="120" height="30" forecolor="#000000" uuid="7e5f692b-109c-42c7-9f1e-7d125c4ed97a"/>
+                <text><![CDATA[Código de Segurança]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="68" splitType="Stretch">
+            <textField>
+                <reportElement x="0" y="10" width="80" height="30" uuid="8b23e6a2-12f9-4d5e-86c4-511cf70432d6"/>
+                <textElement>
+                    <font fontName="Arial" size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{idPagamento}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="80" y="10" width="200" height="30" uuid="1799d19e-2cc1-4a66-9f88-dade9f50091d"/>
+                <textElement>
+                    <font fontName="Arial" size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{nomeCartao}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="280" y="10" width="150" height="30" uuid="7e5f692b-109c-42c7-9f1e-7d125c4ed977"/>
+                <textElement>
+                    <font fontName="Arial" size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{numeroCartao}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="430" y="10" width="85" height="30" uuid="7e5f692b-109c-42c7-9f1e-7d125c4ed978"/>
+                <textElement>
+                    <font fontName="Arial" size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{bandeira}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="515" y="10" width="100" height="30" uuid="7e5f692b-109c-42c7-9f1e-7d125c4ed979"/>
+                <textElement>
+                    <font fontName="Arial" size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{dataValidade}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="615" y="10" width="120" height="30" uuid="7e5f692b-109c-42c7-9f1e-7d125c4ed97a"/>
+                <textElement>
+                    <font fontName="Arial" size="14"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{codigoSeguranca}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>

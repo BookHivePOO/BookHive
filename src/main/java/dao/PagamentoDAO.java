@@ -9,7 +9,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class PagamentoDAO implements IPagamentoDAO {
     private static final String MENSAGEM_SUCESSO_CADASTRO = "Pagamento cadastrado com sucesso!";
@@ -63,4 +65,39 @@ public class PagamentoDAO implements IPagamentoDAO {
 
         return null;
     }
+
+    /**
+     * Lista todos os pagamentos cadastrados no banco de dados.
+     *
+     * @return uma lista contendo todos os pagamentos cadastrados
+     */
+    public List<Pagamento> listarPagamentos() {
+        List<Pagamento> pagamentos = new ArrayList<>();
+
+        try {
+            String sql = QuerySQL.LISTAR_TODOS_PAGAMENTOS;
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int idPagamento = resultSet.getInt("idPagamento");
+                String nomeCartao = resultSet.getString("nomeCartao");
+                String numeroCartao = resultSet.getString("numeroCartao");
+                String bandeira = resultSet.getString("bandeira");
+                Date dataValidade = resultSet.getDate("dataValidade");
+                long codigoSeguranca = resultSet.getLong("codigoSeguranca");
+
+                Pagamento pagamento = new Pagamento(idPagamento, nomeCartao, numeroCartao, bandeira, dataValidade, codigoSeguranca);
+                pagamentos.add(pagamento);
+            }
+
+            resultSet.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return pagamentos;
+    }
+
 }

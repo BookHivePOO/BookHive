@@ -10,6 +10,7 @@ import dto.TransacaoDTO;
 import model.Pagamento;
 import model.Transacao;
 import model.Usuario;
+import util.RelatorioGenerator;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -32,8 +33,10 @@ public class Main {
 
         do {
             System.out.println("Escolha uma opção:");
+            System.out.println("0 - Gerar relatorios");
             System.out.println("1 - Login");
             System.out.println("2 - Cadastrar");
+
 
             if (usuarioLogado != null) {
                 System.out.println("3 - Cadastrar Livro");
@@ -44,7 +47,7 @@ public class Main {
                 System.out.println("8 - Ver histórico de vendas");
                 System.out.println("9 - Ver histórico de compras");
             }
-            System.out.println("0 - Fechar");
+            System.out.println("100 - Fechar");
 
             opcao = scanner.nextInt();
             scanner.nextLine(); // Limpar o buffer de leitura
@@ -89,6 +92,9 @@ public class Main {
                     // Cadastro do usuário
                     usuarioDAO.cadastrarUsuario(nome, cpf, email, senha);
 
+                    break;
+                case 0:
+                    RelatorioGenerator.gerarRelatorioCompleto();
                     break;
                 case 3:
                     if (usuarioLogado != null) {
@@ -335,7 +341,7 @@ public class Main {
                         System.out.println("É necessário fazer login para ver o histórico de compras.");
                     }
                     break;
-                case 0:
+                case 100:
                     System.out.println("Fechando o programa...");
                     break;
                 default:

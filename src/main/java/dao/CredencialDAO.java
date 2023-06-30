@@ -6,7 +6,10 @@ import util.QuerySQL;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe responsável por realizar operações de acesso aos dados relacionadas a Credenciais no banco de dados.
@@ -51,6 +54,40 @@ public class CredencialDAO {
         }
 
         return credencial;
+    }
+
+    // ...
+
+    /**
+     * Lista todas as credenciais no banco de dados.
+     *
+     * @return uma lista contendo todas as credenciais
+     */
+    public List<Credencial> listarCredenciais() {
+        List<Credencial> credenciais = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM Credencial";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int idCredencial = resultSet.getInt("idCredencial");
+                String email = resultSet.getString("email");
+                String senha = resultSet.getString("senha");
+                boolean ativo = resultSet.getBoolean("ativo");
+
+                Credencial credencial = new Credencial(idCredencial, email, senha, ativo);
+                credenciais.add(credencial);
+            }
+
+            resultSet.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return credenciais;
     }
 }
 

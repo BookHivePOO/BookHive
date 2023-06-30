@@ -159,4 +159,39 @@ public class TransacaoDAO implements ITransacaoDAO {
 
         return vendasEncontradas;
     }
+
+    /**
+     * Lista todas as transações de compra.
+     *
+     * @return uma lista contendo todas as transações de compra
+     */
+    public List<TransacaoDTO> listarTransacoes() {
+        List<TransacaoDTO> transacoes = new ArrayList<>();
+
+        try {
+            String sql = QuerySQL.LISTAR_TODAS_TRANSACOES;
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int idTransacao = resultSet.getInt("idTransacao");
+                int idCompra = resultSet.getInt("idCompra");
+                int idVenda = resultSet.getInt("idVenda");
+                int idLivro = resultSet.getInt("idLivro");
+                int idPagamento = resultSet.getInt("idPagamento");
+                int idEnderecoEntrega = resultSet.getInt("idEnderecoEntrega");
+                double totalPagar = resultSet.getDouble("totalPagar");
+
+                TransacaoDTO transacao = new TransacaoDTO(idTransacao, idCompra, idVenda, idLivro, idPagamento, idEnderecoEntrega, totalPagar);
+                transacoes.add(transacao);
+            }
+
+            resultSet.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return transacoes;
+    }
 }

@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe responsável por realizar operações de acesso aos dados relacionadas a Endereços no banco de dados.
@@ -112,5 +114,41 @@ public class EnderecoDAO implements IEnderecoDAO {
             e.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * Retorna uma lista com todos os endereços cadastrados no banco de dados.
+     *
+     * @return uma lista contendo objetos do tipo Endereco representando os endereços cadastrados
+     */
+    public List<Endereco> listarTodosEnderecos() {
+        List<Endereco> enderecos = new ArrayList<>();
+
+        try {
+            String sql = QuerySQL.LISTAR_TODOS_ENDERECOS;
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int idEndereco = resultSet.getInt("idEndereco");
+                String logradouro = resultSet.getString("logradouro");
+                int numero = resultSet.getInt("numero");
+                String complemento = resultSet.getString("complemento");
+                String bairro = resultSet.getString("bairro");
+                String cidade = resultSet.getString("cidade");
+                String estado = resultSet.getString("estado");
+                long cep = resultSet.getLong("cep");
+
+                Endereco endereco = new Endereco(idEndereco, logradouro, numero, complemento, bairro, cidade, estado, cep);
+                enderecos.add(endereco);
+            }
+
+            resultSet.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return enderecos;
     }
 }

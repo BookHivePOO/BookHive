@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="usuario" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d07239f1-3b17-4b71-903d-79a2c4005b6e">
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+    <queryString>
+        <![CDATA[]]>
+    </queryString>
+    <field name="id" class="java.lang.Long"/>
+    <field name="nome" class="java.lang.String"/>
+    <field name="cpf" class="java.lang.Long"/>
+    <field name="idCredencial" class="java.lang.Long"/>
+    <field name="idEndereco" class="java.lang.Long"/>
+    <title>
+        <band height="79" splitType="Stretch">
+            <staticText>
+                <reportElement x="0" y="0" width="555" height="39" uuid="b94e2dd3-ba0b-43fe-8c36-1d0117e9d62b"/>
+                <textElement textAlignment="Center">
+                    <font size="18"/>
+                </textElement>
+                <text><![CDATA[Relatório de Usuários]]></text>
+            </staticText>
+        </band>
+    </title>
+    <columnHeader>
+        <band height="30" splitType="Stretch">
+            <staticText>
+                <reportElement x="0" y="0" width="100" height="30" uuid="58a44a1b-92e9-4bde-a30b-2ae9d1053058"/>
+                <text><![CDATA[ID]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="100" y="0" width="120" height="30" uuid="2d0ab83a-f117-47ce-8947-f2454fc1a1a5"/>
+                <text><![CDATA[Nome]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="220" y="0" width="120" height="30" uuid="482a27a6-88f5-485f-9f7f-60307e1d8778"/>
+                <text><![CDATA[CPF]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="340" y="0" width="120" height="30" uuid="924816dd-cf95-45fe-b6aa-86e0a1d13632"/>
+                <text><![CDATA[ID Credencial]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="460" y="0" width="120" height="30" uuid="ef9992e4-d5a4-4c86-9c14-ec289ff4461a"/>
+                <text><![CDATA[ID Endereço]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="30" splitType="Stretch">
+            <textField>
+                <reportElement x="0" y="0" width="100" height="30" uuid="81fc16f1-f4fe-4976-9e42-eb9a8a0d9cc4"/>
+                <textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="100" y="0" width="120" height="30" uuid="fc708c89-96cd-4ee7-b0a3-87da5439ed94"/>
+                <textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="220" y="0" width="120" height="30" uuid="e4a40a8e-87f5-4cda-af83-68e525d6abf7"/>
+                <textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="340" y="0" width="120" height="30" uuid="8af42c36-8773-4aa6-9828-67ed0a121651"/>
+                <textFieldExpression><![CDATA[$F{idCredencial}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="460" y="0" width="120" height="30" uuid="b1d529ed-1c75-49b6-aab7-4e5a609f3519"/>
+                <textFieldExpression><![CDATA[$F{idEndereco}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>

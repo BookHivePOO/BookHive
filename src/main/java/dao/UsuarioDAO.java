@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsuarioDAO implements IUsuarioDAO {
     private static final String EMAIL_CADASTRADO_ERROR_MENSAGEM = "E-mail já cadastrado. Por favor, tente outro e-mail.";
@@ -141,5 +143,37 @@ public class UsuarioDAO implements IUsuarioDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    /**
+     * Lista todos os usuários no banco de dados.
+     *
+     * @return uma lista contendo todos os usuários
+     */
+    public List<Usuario> listarUsuarios() {
+        List<Usuario> usuarios = new ArrayList<>();
+
+        try {
+            String sql = QuerySQL.LISTAR_TODOS_USUARIOS;
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int idUsuario = resultSet.getInt("idUsuario");
+                String nome = resultSet.getString("nome");
+                long cpf = resultSet.getLong("cpf");
+                int idCredencial = resultSet.getInt("idCredencial");
+                long idEndereco = resultSet.getLong("idEndereco");
+
+                Usuario usuario = new Usuario(idUsuario, nome, cpf, (long) idCredencial, idEndereco);
+                usuarios.add(usuario);
+            }
+
+            resultSet.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return usuarios;
     }
 }
