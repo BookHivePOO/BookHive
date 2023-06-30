@@ -34,7 +34,6 @@
                 <textElement textAlignment="Center" verticalAlignment="Middle">
                     <font isBold="true"/>
                 </textElement>
-                <text><![CDATA[Gêneros]]></text>
             </staticText>
         </band>
     </columnHeader>
