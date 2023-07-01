@@ -2,6 +2,10 @@
 
 Este é um projeto de criação de um sistema de controle e gerenciamento de vendas de livros usados. O sistema consiste em uma plataforma online que permite aos usuários cadastrar livros para venda e buscar por livros disponíveis para compra. A ideia é facilitar a transação de livros usados entre vendedores e compradores.
 
+## UML
+![UML](https://github.com/BookHivePOO/BookHive/assets/106194018/4c20a4c8-a9da-4744-96c8-1ed9714cbe24)
+
+
 ## Equipe
 
 - Alberto Henrique
