@@ -4,13 +4,13 @@ package dto;
  * Classe que representa uma transação na forma de objeto de transferência de dados (DTO).
  */
 public class TransacaoDTO {
-    private int idTransacao;
-    private int idCompra;
-    private int idVenda;
-    private int idLivro;
-    private int idPagamento;
-    private int idEnderecoEntrega;
-    private double totalPagar;
+    private final int idTransacao;
+    private final int idCompra;
+    private final int idVenda;
+    private final int idLivro;
+    private final int idPagamento;
+    private final int idEnderecoEntrega;
+    private final double totalPagar;
 
     /**
      * Construtor da classe TransacaoDTO.
@@ -43,15 +43,6 @@ public class TransacaoDTO {
     }
 
     /**
-     * Define o ID da transação.
-     *
-     * @param idTransacao ID da transação
-     */
-    public void setIdTransacao(int idTransacao) {
-        this.idTransacao = idTransacao;
-    }
-
-    /**
      * Obtém o ID da compra.
      *
      * @return ID da compra
@@ -60,14 +51,6 @@ public class TransacaoDTO {
         return idCompra;
     }
 
-    /**
-     * Define o ID da compra.
-     *
-     * @param idCompra ID da compra
-     */
-    public void setIdCompra(int idCompra) {
-        this.idCompra = idCompra;
-    }
 
     /**
      * Obtém o ID da venda.
@@ -76,15 +59,6 @@ public class TransacaoDTO {
      */
     public int getIdVenda() {
         return idVenda;
-    }
-
-    /**
-     * Define o ID da venda.
-     *
-     * @param idVenda ID da venda
-     */
-    public void setIdVenda(int idVenda) {
-        this.idVenda = idVenda;
     }
 
     /**
@@ -97,15 +71,6 @@ public class TransacaoDTO {
     }
 
     /**
-     * Define o ID do livro.
-     *
-     * @param idLivro ID do livro
-     */
-    public void setIdLivro(int idLivro) {
-        this.idLivro = idLivro;
-    }
-
-    /**
      * Obtém o ID do pagamento.
      *
      * @return ID do pagamento
@@ -113,16 +78,6 @@ public class TransacaoDTO {
     public int getIdPagamento() {
         return idPagamento;
     }
-
-    /**
-     * Define o ID do pagamento.
-     *
-     * @param idPagamento ID do pagamento
-     */
-    public void setIdPagamento(int idPagamento) {
-        this.idPagamento = idPagamento;
-    }
-
     /**
      * Obtém o ID do endereço de entrega.
      *
@@ -133,30 +88,12 @@ public class TransacaoDTO {
     }
 
     /**
-     * Define o ID do endereço de entrega.
-     *
-     * @param idEnderecoEntrega ID do endereço de entrega
-     */
-    public void setIdEnderecoEntrega(int idEnderecoEntrega) {
-        this.idEnderecoEntrega = idEnderecoEntrega;
-    }
-
-    /**
      * Obtém o valor total a pagar.
      *
      * @return Valor total a pagar
      */
     public double getTotalPagar() {
         return totalPagar;
-    }
-
-    /**
-     * Define o valor total a pagar.
-     *
-     * @param totalPagar Valor total a pagar
-     */
-    public void setTotalPagar(double totalPagar) {
-        this.totalPagar = totalPagar;
     }
 
     /**

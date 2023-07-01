@@ -151,7 +151,7 @@ public class LivroDAO implements ILivroDAO {
                 String titulo = resultSet.getString("titulo");
                 String autor = resultSet.getString("autor");
                 String descricao = resultSet.getString("descricao");
-                int numeroPaginas = resultSet.getInt("numero_paginas");
+                int numeroPaginas = resultSet.getInt("numeroPaginas");
                 int idGenero = resultSet.getInt("idGenero");
                 String estado = resultSet.getString("estado");
                 double preco = resultSet.getDouble("preco");

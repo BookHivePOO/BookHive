@@ -1,10 +1,6 @@
-# Sistema de Compra e Venda de Livros Novos e Usados - BookHive
+# Sistema de Compra e Venda de Livros Usados - BookHive
 
-Este é um projeto de criação de um sistema de controle e gerenciamento de vendas de livros novos e usados. O sistema consiste em uma plataforma online que permite aos usuários cadastrar livros para venda e buscar por livros disponíveis para compra. A ideia é facilitar a transação de livros usados entre vendedores e compradores.
-
-## UML
-![WhatsApp Image 2023-06-23 at 10 32 51](https://github.com/BookHivePOO/BookHive/assets/106194018/5f4fee75-09c8-4492-aa47-90c780721389)
-
+Este é um projeto de criação de um sistema de controle e gerenciamento de vendas de livros usados. O sistema consiste em uma plataforma online que permite aos usuários cadastrar livros para venda e buscar por livros disponíveis para compra. A ideia é facilitar a transação de livros usados entre vendedores e compradores.
 
 ## Equipe
 
@@ -18,7 +14,7 @@ A seguir estão as funcionalidades idealizadas para o sistema:
 
 ### Cadastro de Livros
 
-Os usuários podem cadastrar livros usados para venda, fornecendo informações como título, autor, descrição, número de páginas, gênero, preço e fotos do livro.
+Os usuários podem cadastrar livros usados para venda, fornecendo informações como título, autor, descrição, número de páginas, gênero, preço e foto do livro.
 
 ### Pesquisa de Livros
 
@@ -53,4 +49,3 @@ A seguir estão os requisitos técnicos para o desenvolvimento do sistema:
 3. Crie um banco de dados no servidor MySQL para o sistema.
 4. Configure as bibliotecas de acesso a banco de dados no projeto Java.
 5. Compile e execute o sistema.
-

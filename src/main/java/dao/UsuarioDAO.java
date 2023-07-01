@@ -21,6 +21,9 @@ import util.Validacoes;
 public class UsuarioDAO implements IUsuarioDAO {
     private static final String EMAIL_CADASTRADO_ERROR_MENSAGEM = "E-mail já cadastrado. Por favor, tente outro e-mail.";
     private static final String MENSAGEM_SUCESSO_CADASTRO = "Usuário cadastrado com sucesso!";
+
+    public static final String MENSAGEM_DADOS_INVALIDOS = "Não foi possivel finalizar o cadastro. Dado inserido " +
+            "incorretamente, verifique os mesmos e reenvie a solicitação";
     private static final String MENSAGEM_SUCESSO_LOGIN = "Login realizado com sucesso!";
     private static final String CREDENCIAIS_INVALIDAS_ERROR_MENSAGEM = "E-mail ou senha incorretos. Por favor, verifique suas credenciais.";
 
@@ -39,8 +42,10 @@ public class UsuarioDAO implements IUsuarioDAO {
     @Override
     public boolean cadastrarUsuario(String nome, long cpf, String email, String senha) {
 
-        if(Validacoes.validarCadastroUsuario(nome,cpf,email,senha)){
+        if(!Validacoes.validarCadastroUsuario(nome,cpf,email,senha)){
+            System.out.println(MENSAGEM_DADOS_INVALIDOS);
             return false;
+
         }
 
         CredencialDAO credencialDAO = new CredencialDAO();
